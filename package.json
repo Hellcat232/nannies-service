@@ -1,5 +1,5 @@
 {
-  "name": "nanny-service",
+  "name": "nannies-service",
   "private": true,
   "version": "0.0.0",
   "type": "module",
