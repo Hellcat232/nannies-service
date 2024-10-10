@@ -1,7 +1,6 @@
 import "./App.module.css";
 import { Routes, Route } from "react-router-dom";
 import Layout from "../Layout/Layout";
-import Navigation from "../Navigation/Navigation";
 
 import HomePage from "../../pages/HomePage/HomePage";
 import NanniesPage from "../../pages/NanniesPage/NanniesPage";
@@ -11,8 +10,6 @@ import NotFoundPage from "../../pages/NotFoundPage/NoteFoundPage";
 const App = () => {
   return (
     <>
-      {/* <Navigation /> */}
-
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -1,8 +1,8 @@
-import css from "./Navigation.module.css";
 import LogoTitle from "../LogoTitle/LogoTitle";
+import css from "./FixedHeader.module.css";
 import { NavLink } from "react-router-dom";
 
-const Navigation = () => {
+const FixedHeader = () => {
   return (
     <header>
       <nav className={css.nav}>
@@ -23,4 +23,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default FixedHeader;

@@ -1,5 +1,26 @@
+@font-face {
+  font-family: Helvetica, sans-serif;
+  src: url("./assets/fonts/helvetica-neue-regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Helvetica, sans-serif;
+  src: url("./assets/fonts/HelveticaNeueMedium.otf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Helvetica, sans-serif;
+  src: url("./assets/fonts/HelveticaNeueBold.otf");
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Helvetica", "Inter", system-ui, Avenir, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -30,9 +51,8 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+p {
+  margin: 0;
 }
 
 button {
@@ -56,7 +76,7 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    /* color: #213547; */
     background-color: #ffffff;
   }
   a:hover {
