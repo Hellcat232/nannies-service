@@ -4,19 +4,33 @@ import { NavLink } from "react-router-dom";
 
 const FixedHeader = () => {
   return (
-    <header>
+    <header className={css["fixed-header"]}>
       <nav className={css.nav}>
         <LogoTitle />
 
         <div className={css.links}>
-          <NavLink>Home</NavLink>
-          <NavLink>Nannies</NavLink>
-          <NavLink>Favorites</NavLink>
+          <NavLink to="/" className={css.link}>
+            Home
+          </NavLink>
+          <NavLink to="/nannies" className={css.link}>
+            Nannies
+          </NavLink>
+          <NavLink to="/favorites" className={css.link}>
+            Favorites
+          </NavLink>
         </div>
 
         <div className={css.btns}>
-          <button>Log In</button>
-          <button>Registration</button>
+          <div className={css["avatar-div"]}>
+            <img
+              src="../../../public/avatar.png"
+              alt=""
+              width="40px"
+              height="40px"
+            />
+            <p className={css.name}>Name</p>
+          </div>
+          <button className={css["logout-btn"]}>Log Out</button>
         </div>
       </nav>
     </header>

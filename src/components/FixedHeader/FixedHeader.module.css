@@ -1,7 +1,16 @@
+.fixed-header {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 70px;
+  background: #f03f3b;
+}
+
 .nav {
   width: 100vw;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .links {
@@ -11,8 +20,47 @@
   gap: 40px;
 }
 
+.link {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
+}
+
 .btns {
   display: flex;
   justify-content: center;
+  gap: 24px;
+  align-items: center;
+}
+
+.avatar-div {
+  display: flex;
   gap: 10px;
+  align-items: center;
+}
+.name {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
+}
+
+.logout-btn {
+  border: 1px solid rgba(251, 251, 251, 0.4);
+  border-radius: 30px;
+  padding: 14px 30px;
+  width: 134px;
+  height: 48px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
+  background: transparent;
 }

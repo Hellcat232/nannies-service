@@ -1,11 +1,14 @@
 import "./App.module.css";
 import { Routes, Route } from "react-router-dom";
+import Modal from "react-modal";
 import Layout from "../Layout/Layout";
 
 import HomePage from "../../pages/HomePage/HomePage";
 import NanniesPage from "../../pages/NanniesPage/NanniesPage";
 import FavoritesPage from "../../pages/FavoritesPage/FavoritesPage";
 import NotFoundPage from "../../pages/NotFoundPage/NoteFoundPage";
+
+Modal.setAppElement("#root");
 
 const App = () => {
   return (
