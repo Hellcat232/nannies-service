@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const schema = yup
   .object({
@@ -21,8 +24,16 @@ const LoginForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => {
-    navigate("/nannies");
+  const onSubmit = async (data) => {
+    const { email, password } = data;
+    try {
+      const res = await signInWithEmailAndPassword(auth, email, password);
+      navigate("/nannies");
+      return res;
+    } catch (error) {
+      console.log(error);
+      toast(error.message);
+    }
   };
 
   return (
@@ -40,14 +51,14 @@ const LoginForm = () => {
           placeholder="Email"
           className={css["login-inputs"]}
         />
-        {/* <p>{errors.email.message}</p> */}
+        {errors.email && <p>{errors.email.message}</p>}
 
         <input
           {...register("password")}
           placeholder="Password"
           className={css["login-inputs"]}
         />
-        {/* <p>{errors.password.message}</p> */}
+        {errors.password && <p>{errors.password.message}</p>}
       </div>
 
       <button type="submit" className={css["login-btn"]}>

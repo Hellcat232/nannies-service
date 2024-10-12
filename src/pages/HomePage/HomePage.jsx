@@ -1,8 +1,15 @@
 import css from "./HomePage.module.css";
 import icons from "../../img/symbol-defs.svg";
 import HomePageHeader from "../../components/HomePageHeader/HomePageHeader";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate("/nannies");
+  };
+
   return (
     <div className={css.home}>
       <HomePageHeader />
@@ -17,7 +24,10 @@ export default function HomePage() {
             <p className={css.text}>
               Find Babysitters Online for All Occasions
             </p>
-            <button className={css["get-started-btn"]}>
+            <button
+              className={css["get-started-btn"]}
+              onClick={handleGetStarted}
+            >
               Get started{" "}
               <svg width="15" height="17">
                 <use href={`${icons}#icon-Arrow`}></use>

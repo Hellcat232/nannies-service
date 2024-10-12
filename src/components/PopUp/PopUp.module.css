@@ -1,0 +1,125 @@
+.modal-close {
+  position: absolute;
+  left: auto;
+  right: 20px;
+  top: 20px;
+  border: none;
+  background: transparent;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-descr {
+  width: 472px;
+}
+
+.main-title {
+  margin-top: 0;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #11101c;
+}
+
+.main-description {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: rgba(17, 16, 28, 0.5);
+}
+
+.avatar-div {
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.img {
+  border-radius: 15px;
+  width: 44px;
+  height: 44px;
+  background: #e0e0e0;
+}
+
+.your-nanny {
+  display: flex;
+  flex-direction: column;
+}
+
+.nanny-text {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 133%;
+  color: #8a8a89;
+}
+
+.nanny-name {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #11101c;
+}
+
+.short-inputs-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 6px;
+  row-gap: 16px;
+}
+
+.short-inputs {
+  border: 1px solid rgba(17, 16, 28, 0.1);
+  border-radius: 12px;
+  padding: 16px 18px 16px 18px;
+  width: 196px;
+  height: 16px;
+}
+
+.long-inputs-div {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.long-inputs {
+  border: 1px solid rgba(17, 16, 28, 0.1);
+  border-radius: 12px;
+  padding: 16px 18px 16px 18px;
+  width: 436px;
+  height: 16px;
+}
+
+.textarea-inputs {
+  border: 1px solid rgba(17, 16, 28, 0.1);
+  border-radius: 12px;
+  padding: 16px 18px 16px 18px;
+  width: 436px;
+  height: 116px;
+}
+
+.book-btn {
+  margin-top: 40px;
+  border-radius: 30px;
+  padding: 16px 217px;
+  width: 472px;
+  height: 52px;
+  background: #f03f3b;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
+}

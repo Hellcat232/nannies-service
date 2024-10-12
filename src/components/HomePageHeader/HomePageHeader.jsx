@@ -5,9 +5,11 @@ import LoginForm from "../LoginForm/LoginForm";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase/firebase";
 
 const HomePageHeader = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  const [user] = useAuthState(auth);
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
   const [registerModalIsOpen, setRegisterModalIsOpen] = useState(false);
   const [login, setLogin] = useState(false);
@@ -29,7 +31,7 @@ const HomePageHeader = () => {
         <nav className={css.nav}>
           <LogoTitle />
 
-          <div style={{ display: "flex", gap: "92px" }}>
+          <div style={{ display: "flex", gap: "75px" }}>
             <div className={css.links}>
               <NavLink to="/" className={css.link}>
                 Home
@@ -37,24 +39,29 @@ const HomePageHeader = () => {
               <NavLink to="/nannies" className={css.link}>
                 Nannies
               </NavLink>
-              {isLogged && (
+              {user && (
                 <NavLink to="/favorites" className={css.link}>
                   Favorites
                 </NavLink>
               )}
             </div>
 
-            <div className={css.btns}>
-              <button className={css["log-btn"]} onClick={handleOpenLoginForm}>
-                Log In
-              </button>
-              <button
-                className={css["reg-btn"]}
-                onClick={handleOpenRegisterForm}
-              >
-                Registration
-              </button>
-            </div>
+            {!user && (
+              <div className={css.btns}>
+                <button
+                  className={css["log-btn"]}
+                  onClick={handleOpenLoginForm}
+                >
+                  Log In
+                </button>
+                <button
+                  className={css["reg-btn"]}
+                  onClick={handleOpenRegisterForm}
+                >
+                  Registration
+                </button>
+              </div>
+            )}
           </div>
         </nav>
       </header>

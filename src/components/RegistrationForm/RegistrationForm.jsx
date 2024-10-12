@@ -3,6 +3,9 @@ import css from "./RegistrationForm.module.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const schema = yup
   .object({
@@ -22,8 +25,17 @@ const RegistrationForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => {
-    navigate("/nannies");
+  const onSubmit = async (data) => {
+    const { email, password, repeat } = data;
+    if (password !== repeat) return toast("Password not matches");
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      navigate("/nannies");
+      return res;
+    } catch (error) {
+      console.log(error.message);
+      toast(error.message);
+    }
   };
 
   return (
@@ -43,21 +55,21 @@ const RegistrationForm = () => {
           placeholder="Email"
           className={css["register-inputs"]}
         />
-        {/* <p>{errors.email.message}</p> */}
+        {errors.email && <p>{errors.email.message}</p>}
 
         <input
           {...register("password")}
           placeholder="Password"
           className={css["register-inputs"]}
         />
-        {/* <p>{errors.password.message}</p> */}
+        {errors.password && <p>{errors.password.message}</p>}
 
         <input
           {...register("repeat")}
           placeholder="Repeat password"
           className={css["register-inputs"]}
         />
-        {/* <p>{errors.repeat.message}</p> */}
+        {errors.repeat && <p>{errors.repeat.message}</p>}
       </div>
 
       <button type="submit" className={css["register-btn"]}>
