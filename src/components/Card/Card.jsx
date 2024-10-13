@@ -24,7 +24,7 @@ const Card = ({ nanny }) => {
     return filter.find((findItem) => findItem.id === nanny.id);
   });
 
-  console.log(heart);
+  //   console.log(heart);
 
   const [readMore, setReadMore] = useState(false);
   const {

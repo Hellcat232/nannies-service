@@ -8,6 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 const FixedHeader = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
+  console.log(user);
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -21,14 +22,29 @@ const FixedHeader = () => {
         <LogoTitle />
 
         <div className={css.links}>
-          <NavLink to="/" className={css.link}>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? `${css.link} ${css.active}` : css.link
+            }
+          >
             Home
           </NavLink>
-          <NavLink to="/nannies" className={css.link}>
+          <NavLink
+            to="/nannies"
+            className={({ isActive }) =>
+              isActive ? `${css.link} ${css.active}` : css.link
+            }
+          >
             Nannies
           </NavLink>
           {user && (
-            <NavLink to="/favorites" className={css.link}>
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) =>
+                isActive ? `${css.link} ${css.active}` : css.link
+              }
+            >
               Favorites
             </NavLink>
           )}
@@ -42,7 +58,11 @@ const FixedHeader = () => {
               width="40px"
               height="40px"
             />
-            <p className={css.name}>{"anonym"}</p>
+            {user ? (
+              <p className={css.name}>{user.displayName}</p>
+            ) : (
+              <p className={css.name}>anonymous</p>
+            )}
           </div>
           {user && (
             <button className={css["logout-btn"]} onClick={handleLogout}>

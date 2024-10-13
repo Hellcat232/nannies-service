@@ -27,6 +27,29 @@
   line-height: 125%;
   letter-spacing: -0.01em;
   color: #fbfbfb;
+  position: relative;
+  padding: 10px 0;
+}
+
+.link:hover {
+  transition: 350ms;
+  color: black;
+}
+
+.active {
+  /* font-weight: bold;  */
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #fbfbfb;
+  border-radius: 50%;
 }
 
 .btns {
@@ -63,4 +86,10 @@
   letter-spacing: -0.01em;
   color: #fbfbfb;
   background: transparent;
+}
+
+.logout-btn:hover {
+  transition: 350ms;
+  background: #fbfbfb;
+  color: #f03f3b;
 }

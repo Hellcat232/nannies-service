@@ -6,3 +6,8 @@
   letter-spacing: -0.02em;
   color: #fbfbfb;
 }
+
+.logo:hover {
+  transition: 350ms;
+  color: black;
+}

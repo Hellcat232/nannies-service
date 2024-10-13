@@ -30,6 +30,11 @@
   color: #fbfbfb;
 }
 
+.link:hover {
+  transition: 350ms;
+  color: #f03f3b;
+}
+
 .btns {
   display: flex;
   justify-content: center;
@@ -63,4 +68,10 @@
   line-height: 125%;
   letter-spacing: -0.01em;
   color: #fbfbfb;
+}
+
+.reg-btn:hover {
+  transition: 350ms;
+  background: #fbfbfb;
+  color: #f03f3b;
 }

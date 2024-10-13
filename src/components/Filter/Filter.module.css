@@ -1,0 +1,42 @@
+.filter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 90px 0 32px 0;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: #8a8a89;
+}
+
+.select {
+  border-radius: 14px;
+  padding: 16px 18px 16px 18px;
+  width: 190px;
+  height: auto;
+  background: #f03f3b;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: #fbfbfb;
+  cursor: pointer;
+}
+
+.option {
+  border-radius: 14px;
+  width: 226px;
+  height: 244px;
+  box-shadow: 0 20px 69px 0 rgba(0, 0, 0, 0.07);
+  background: #fff;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 111%;
+  color: rgba(17, 16, 28, 0.3);
+}

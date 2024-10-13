@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { auth } from "../../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
+import { IoEyeOff, IoEye } from "react-icons/io5";
 
 const schema = yup
   .object({
@@ -16,11 +18,17 @@ const schema = yup
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -28,7 +36,11 @@ const LoginForm = () => {
     const { email, password } = data;
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
+
       navigate("/nannies");
+
+      reset();
+
       return res;
     } catch (error) {
       console.log(error);
@@ -53,11 +65,21 @@ const LoginForm = () => {
         />
         {errors.email && <p>{errors.email.message}</p>}
 
-        <input
-          {...register("password")}
-          placeholder="Password"
-          className={css["login-inputs"]}
-        />
+        <div className={css["password-wrapper"]}>
+          <input
+            type={showPassword ? "text" : "password"}
+            {...register("password")}
+            placeholder="Password"
+            className={css["login-inputs"]}
+          />
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className={css["toggle-password"]}
+          >
+            {showPassword ? <IoEyeOff size="16" /> : <IoEye size="16" />}
+          </button>
+        </div>
         {errors.password && <p>{errors.password.message}</p>}
       </div>
 

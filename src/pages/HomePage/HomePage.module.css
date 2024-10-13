@@ -71,6 +71,12 @@
   color: #fbfbfb;
 }
 
+.get-started-btn:hover {
+  transition: 350ms;
+  background: #fbfbfb;
+  color: #f03f3b;
+}
+
 .quantity {
   display: flex;
   align-items: center;

@@ -56,3 +56,15 @@
   letter-spacing: -0.01em;
   color: #fbfbfb;
 }
+
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-password {
+  position: relative;
+  top: -35px;
+  left: 90%;
+  background-color: transparent;
+  border: none;
+}
