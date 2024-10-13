@@ -1,6 +1,4 @@
-import { NavLink, replace, useNavigate } from "react-router-dom";
-import ModalWindow from "../ModalWindow/ModalWindow";
-import LoginForm from "../LoginForm/LoginForm";
+import { NavLink } from "react-router-dom";
 import PopUp from "../PopUp/PopUp";
 import css from "./Card.module.css";
 import { GrLocation } from "react-icons/gr";
@@ -14,17 +12,12 @@ import toast from "react-hot-toast";
 
 const Card = ({ nanny }) => {
   const [user] = useAuthState(auth);
-  //   const navigate = useNavigate();
-  //   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
-  //   const [login, setLogin] = useState(false);
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
   const [heart, setHeart] = useState(() => {
     if (!user) return;
     const filter = JSON.parse(localStorage.getItem("nanny")) || [];
     return filter.find((findItem) => findItem.id === nanny.id);
   });
-
-  //   console.log(heart);
 
   const [readMore, setReadMore] = useState(false);
   const {
@@ -66,17 +59,8 @@ const Card = ({ nanny }) => {
     setPopUpIsOpen(true);
   };
 
-  //   const handleOpenLoginForm = () => {
-  //     if (!user) {
-  //       setLogin(true);
-  //       setLoginModalIsOpen(true);
-  //       navigate("/nannies");
-  //     }
-  //   };
-
   const toFavorites = () => {
     if (!user) return toast("You need to be authenticated");
-    // if (!user) handleOpenLoginForm();
 
     const existingFavorites = JSON.parse(localStorage.getItem("nanny")) || [];
 
