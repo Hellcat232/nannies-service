@@ -1,5 +1,5 @@
 import css from "./HomePage.module.css";
-import icons from "../../images/symbol-defs.svg";
+import icons from "../../../src/images/symbol-defs.svg";
 import HomePageHeader from "../../components/HomePageHeader/HomePageHeader";
 import { useNavigate } from "react-router-dom";
 
