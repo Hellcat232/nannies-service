@@ -53,7 +53,7 @@ const FixedHeader = () => {
         <div className={css.btns}>
           <div className={css["avatar-div"]}>
             <img
-              src="../../images/avatar.png"
+              src="../../../public/avatar.png"
               alt=""
               width="40px"
               height="40px"
