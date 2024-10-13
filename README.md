@@ -1,18 +1,18 @@
 # Nanny.Services
 
-Основная цель сервиса заключается в предоставлении услуг няни, здесь вы легко и удобно можете найти няню для вашего ребёнка используя разнообразные фильтры по рейтингу или цене, это позволяет секономить ваше время и деньги.
+The main goal of the service is to provide nanny services, where you can easily and conveniently find a nanny for your child using a variety of filters such as rating or price, helping you save time and money.
 
 ## Screenshots
 
 ![App Screenshot](/public/first.png)
 
-Так же вы можете легко добавить инересующую вас няню в избранное.
+You can also easily add the nanny you are interested in to your favorites.
 
 ## Screenshots
 
 ![App Screenshot](/public/third.png)
 
-После прочтения отзывов о няне вы можете легко забронировать встречу нажав на соответствующую кнопку
+After reading reviews about the nanny, you can easily book a meeting by clicking the corresponding button.
 
 ## Screenshots
 
