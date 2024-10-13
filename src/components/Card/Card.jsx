@@ -10,7 +10,7 @@ import { auth } from "../../firebase/firebase";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-const Card = ({ nanny }) => {
+const Card = ({ nanny, removeFromFavorites }) => {
   const [user] = useAuthState(auth);
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
   const [heart, setHeart] = useState(() => {
@@ -78,6 +78,7 @@ const Card = ({ nanny }) => {
 
       // Оновлюємо стан, тільки якщо поточна няня була видалена
       if (updatedFavorites.length < existingFavorites.length) {
+        removeFromFavorites(nanny.id);
         setHeart(null);
       }
     } else {

@@ -7,22 +7,23 @@ import { auth } from "../../firebase/firebase";
 import { useState, useEffect } from "react";
 
 export default function FavoritesPage() {
-  const [user] = useAuthState(auth);
+  // const [user] = useAuthState(auth);
   const [favoritesNannies, setFavoritesNannies] = useState([]);
   const [filterCategory, setFilterCategory] = useState("All");
   const [itemsPerPage, setItemsPerPage] = useState(3);
 
-  const loadFavorites = () => {
-    if (!user) return;
-    const savedFavorites = JSON.parse(localStorage.getItem("nanny")) || [];
-    setFavoritesNannies(savedFavorites);
-  };
-
   useEffect(() => {
+    const loadFavorites = () => {
+      const savedFavorites = JSON.parse(localStorage.getItem("nanny")) || [];
+      setFavoritesNannies(savedFavorites);
+    };
+
     loadFavorites();
 
-    const handleStorageChange = () => {
-      loadFavorites();
+    const handleStorageChange = (event) => {
+      if (event.key === "nanny") {
+        loadFavorites();
+      }
     };
 
     window.addEventListener("storage", handleStorageChange);
@@ -30,7 +31,7 @@ export default function FavoritesPage() {
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };
-  }, [favoritesNannies]);
+  }, []);
 
   function handleFilterChange(category) {
     setFilterCategory(category);
@@ -64,6 +65,17 @@ export default function FavoritesPage() {
     return filtered.slice(0, itemsPerPage);
   }
 
+  function removeFromFavorites(nannyId) {
+    const savedFavorites = JSON.parse(localStorage.getItem("nanny")) || [];
+    const updatedFavorites = savedFavorites.filter(
+      (nanny) => nanny.id !== nannyId
+    );
+
+    localStorage.setItem("nanny", JSON.stringify(updatedFavorites));
+
+    setFavoritesNannies(updatedFavorites);
+  }
+
   function loadMoreItems() {
     setItemsPerPage((prevItemsPerPage) => prevItemsPerPage + 3);
   }
@@ -74,8 +86,13 @@ export default function FavoritesPage() {
 
       <main className={css.main}>
         <section>
-          <Filter onFilterChange={handleFilterChange} />
-          <CardList dataValue={filteredFavorites()} />
+          {favoritesNannies.length > 0 && (
+            <Filter onFilterChange={handleFilterChange} />
+          )}
+          <CardList
+            dataValue={filteredFavorites()}
+            removeFromFavorites={removeFromFavorites}
+          />
           {itemsPerPage < favoritesNannies.length && (
             <button onClick={loadMoreItems} className={css.loadMoreBtn}>
               Load More
