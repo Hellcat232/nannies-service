@@ -1,5 +1,6 @@
 import css from "./HomePage.module.css";
-import icons from "../../../src/images/symbol-defs.svg";
+// import icons from "../../../src/images/symbol-defs.svg";
+
 import HomePageHeader from "../../components/HomePageHeader/HomePageHeader";
 import { useNavigate } from "react-router-dom";
 
@@ -30,7 +31,7 @@ export default function HomePage() {
             >
               Get started{" "}
               <svg width="15" height="17">
-                <use href={`${icons}#icon-Arrow`}></use>
+                <use href="images/symbol-defs.svg#icon-Arrow"></use>
               </svg>
             </button>
           </div>
@@ -38,7 +39,7 @@ export default function HomePage() {
           <div className={css.quantity}>
             <div className={css.ckeck}>
               <svg width="20" height="16" className={css.svg}>
-                <use href={`${icons}#icon-feCheck1`}></use>
+                <use href="images/symbol-defs.svg#icon-feCheck1"></use>
               </svg>
             </div>
             <div className={css.descr}>
