@@ -52,12 +52,7 @@ const FixedHeader = () => {
 
         <div className={css.btns}>
           <div className={css["avatar-div"]}>
-            <img
-              src="../../../public/avatar.png"
-              alt=""
-              width="40px"
-              height="40px"
-            />
+            <img src="/public/avatar.png" alt="" width="40px" height="40px" />
             {user ? (
               <p className={css.name}>{user.displayName}</p>
             ) : (
