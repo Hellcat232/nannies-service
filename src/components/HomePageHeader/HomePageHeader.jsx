@@ -49,12 +49,14 @@ const HomePageHeader = () => {
             {!user && (
               <div className={css.btns}>
                 <button
+                  type="submit"
                   className={css["log-btn"]}
                   onClick={handleOpenLoginForm}
                 >
                   Log In
                 </button>
                 <button
+                  type="submit"
                   className={css["reg-btn"]}
                   onClick={handleOpenRegisterForm}
                 >
@@ -76,8 +78,10 @@ const HomePageHeader = () => {
         setRegister={setRegister}
         register={register}
       >
-        {login && <LoginForm />}
-        {register && <RegistrationForm />}
+        {login && <LoginForm setLoginModalIsOpen={setLoginModalIsOpen} />}
+        {register && (
+          <RegistrationForm setRegisterModalIsOpen={setRegisterModalIsOpen} />
+        )}
       </ModalWindow>
     </>
   );

@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, get, onValue } from "firebase/database";
+import { getDatabase, ref } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,20 +26,3 @@ export const auth = getAuth(app);
 const db = getDatabase(app);
 
 export const nanniesRef = ref(db);
-
-// export const database = await get(nanniesRef)
-//   .then((nanny) => {
-//     if (nanny.exists()) {
-//       const data = nanny.val();
-//       console.log(data);
-
-//       return data;
-//     } else {
-//       console.log("No data available");
-//     }
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
-
-// console.log(database);

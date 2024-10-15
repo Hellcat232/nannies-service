@@ -56,6 +56,8 @@
 }
 
 .get-started-btn {
+  display: flex;
+  align-items: center;
   margin-top: 82px;
   border: 1px solid rgba(251, 251, 251, 0.4);
   border-radius: 30px;

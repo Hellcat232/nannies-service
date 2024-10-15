@@ -7,18 +7,13 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/firebase";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 const Card = ({ nanny, removeFromFavorites }) => {
   const [user] = useAuthState(auth);
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
-  const [heart, setHeart] = useState(() => {
-    if (!user) return;
-    const filter = JSON.parse(localStorage.getItem("nanny")) || [];
-    return filter.find((findItem) => findItem.id === nanny.id);
-  });
-
+  const [heart, setHeart] = useState(false);
   const [readMore, setReadMore] = useState(false);
   const {
     avatar_url,
@@ -33,7 +28,16 @@ const Card = ({ nanny, removeFromFavorites }) => {
     rating,
     characters,
     reviews,
+    id,
   } = nanny;
+
+  useEffect(() => {
+    if (user) {
+      const favorites = JSON.parse(localStorage.getItem("nanny")) || [];
+      const isFavorite = favorites.some((favorite) => favorite.id === id);
+      setHeart(isFavorite);
+    }
+  }, [user, id]);
 
   function getAge(date) {
     const birthDate = new Date(date);
@@ -64,31 +68,25 @@ const Card = ({ nanny, removeFromFavorites }) => {
 
     const existingFavorites = JSON.parse(localStorage.getItem("nanny")) || [];
 
-    // Перевіряємо, чи вже є така няня у вибраному (порівнюємо за id)
     const isItemAlreadyFavorite = existingFavorites.some(
-      (favorite) => favorite.id === nanny.id
+      (favorite) => favorite.id === id
     );
 
     if (isItemAlreadyFavorite) {
-      // Якщо няня вже є у списку, видаляємо її
       const updatedFavorites = existingFavorites.filter(
-        (favorite) => favorite.id !== nanny.id
+        (favorite) => favorite.id !== id
       );
       localStorage.setItem("nanny", JSON.stringify(updatedFavorites));
 
-      // Оновлюємо стан, тільки якщо поточна няня була видалена
       if (updatedFavorites.length < existingFavorites.length) {
-        removeFromFavorites(nanny.id);
-        setHeart(null);
+        setHeart(false);
+        removeFromFavorites(id);
       }
     } else {
-      // Якщо няня не в обраному, додаємо її
       const updatedFavorites = [...existingFavorites, nanny];
       localStorage.setItem("nanny", JSON.stringify(updatedFavorites));
 
-      // Оновлюємо стан після додавання в обране
-
-      setHeart(nanny);
+      setHeart(true);
     }
   };
 
@@ -222,6 +220,7 @@ const Card = ({ nanny, removeFromFavorites }) => {
                 </div>
 
                 <button
+                  type="submit"
                   className={css["appointment-btn"]}
                   onClick={handlePopUpOpener}
                 >
@@ -238,14 +237,6 @@ const Card = ({ nanny, removeFromFavorites }) => {
         name={name}
         avatar={avatar_url}
       />
-      {/* <ModalWindow
-        loginModalIsOpen={loginModalIsOpen}
-        setLoginOpenModal={setLoginModalIsOpen}
-        setLogin={setLogin}
-        login={login}
-      >
-        <LoginForm />
-      </ModalWindow> */}
     </>
   );
 };

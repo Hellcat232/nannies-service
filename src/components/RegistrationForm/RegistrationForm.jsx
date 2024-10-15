@@ -13,11 +13,11 @@ const schema = yup
   .object({
     name: yup.string().required(),
     email: yup.string().required(),
-    password: yup.number().positive().integer().required(),
+    password: yup.mixed().required(),
   })
   .required();
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ setRegisterModalIsOpen }) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -46,7 +46,7 @@ const RegistrationForm = () => {
       navigate("/nannies");
 
       reset();
-
+      setRegisterModalIsOpen(false);
       return res;
     } catch (error) {
       console.log(error.message);

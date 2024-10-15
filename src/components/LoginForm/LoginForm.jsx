@@ -12,11 +12,11 @@ import { IoEyeOff, IoEye } from "react-icons/io5";
 const schema = yup
   .object({
     email: yup.string().required(),
-    password: yup.number().positive().integer().required(),
+    password: yup.mixed().required(),
   })
   .required();
 
-const LoginForm = () => {
+const LoginForm = ({ setLoginModalIsOpen }) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -40,7 +40,7 @@ const LoginForm = () => {
       navigate("/nannies");
 
       reset();
-
+      setLoginModalIsOpen(false);
       return res;
     } catch (error) {
       console.log(error);

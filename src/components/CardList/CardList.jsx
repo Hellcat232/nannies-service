@@ -4,7 +4,7 @@ import Card from "../Card/Card";
 const CardList = ({ dataValue, removeFromFavorites }) => {
   return (
     <ul>
-      {dataValue.map((nanny, index) => {
+      {dataValue.map((nanny) => {
         return (
           <Card
             key={nanny.id}

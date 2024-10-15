@@ -17,7 +17,6 @@ Modal.setAppElement("#root");
 
 const App = () => {
   const [user] = useAuthState(auth);
-  // console.log(user);
 
   return (
     <>

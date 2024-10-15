@@ -2,12 +2,9 @@ import css from "./FavoritesPage.module.css";
 import FixedHeader from "../../components/FixedHeader/FixedHeader";
 import CardList from "../../components/CardList/CardList";
 import Filter from "../../components/Filter/Filter";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase/firebase";
 import { useState, useEffect } from "react";
 
 export default function FavoritesPage() {
-  // const [user] = useAuthState(auth);
   const [favoritesNannies, setFavoritesNannies] = useState([]);
   const [filterCategory, setFilterCategory] = useState("All");
   const [itemsPerPage, setItemsPerPage] = useState(3);
@@ -85,20 +82,24 @@ export default function FavoritesPage() {
       <FixedHeader />
 
       <main className={css.main}>
-        <section>
-          {favoritesNannies.length > 0 && (
-            <Filter onFilterChange={handleFilterChange} />
-          )}
-          <CardList
-            dataValue={filteredFavorites()}
-            removeFromFavorites={removeFromFavorites}
-          />
-          {itemsPerPage < favoritesNannies.length && (
-            <button onClick={loadMoreItems} className={css.loadMoreBtn}>
-              Load More
-            </button>
-          )}
-        </section>
+        {favoritesNannies.length > 0 ? (
+          <section>
+            {favoritesNannies.length > 0 && (
+              <Filter onFilterChange={handleFilterChange} />
+            )}
+            <CardList
+              dataValue={filteredFavorites()}
+              removeFromFavorites={removeFromFavorites}
+            />
+            {itemsPerPage < favoritesNannies.length && (
+              <button onClick={loadMoreItems} className={css.loadMoreBtn}>
+                Load More
+              </button>
+            )}
+          </section>
+        ) : (
+          <strong className={css["not-added"]}>Favorite wasn't added</strong>
+        )}
       </main>
     </>
   );

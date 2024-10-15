@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import css from "./ModalWindow.module.css";
 import { IoMdClose } from "react-icons/io";
+import { useEffect } from "react";
 
 const customStyles = {
   content: {
@@ -54,14 +55,27 @@ const ModalWindow = ({
     }
   };
 
+  useEffect(() => {
+    if (loginModalIsOpen || registerModalIsOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [loginModalIsOpen, registerModalIsOpen]);
+
   return (
     <>
       <Modal
         isOpen={loginModalIsOpen || registerModalIsOpen}
-        // onAfterOpen={afterOpenModal}
-        onRequestClose={onRequestClose}
         style={customStyles}
         contentLabel="Example Modal"
+        onRequestClose={handleCloseModal}
+        shouldCloseOnEsc={true}
+        shouldCloseOnOverlayClick={true}
       >
         <button className={css["modal-close"]}>
           <IoMdClose onClick={handleCloseModal} />

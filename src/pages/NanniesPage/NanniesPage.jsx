@@ -5,20 +5,21 @@ import css from "./NanniesPage.module.css";
 import { nanniesRef } from "../../firebase/firebase";
 import { get } from "firebase/database";
 import { useState, useEffect } from "react";
+
 import toast from "react-hot-toast";
 
 export default function NanniesPage() {
   const [dataValue, setDataValue] = useState([]);
   const [filterCategory, setFilterCategory] = useState("All");
-  const [itemsPerPage, setItemsPerPage] = useState(3); // Показываем по 3 элемента на страницу
+  const [itemsPerPage, setItemsPerPage] = useState(3);
 
   useEffect(() => {
     const database = async () => {
       try {
         const res = await get(nanniesRef);
-        // console.log(res.val());
 
         setDataValue(res.val());
+
         return res.val();
       } catch (error) {
         console.log(error);
@@ -54,12 +55,11 @@ export default function NanniesPage() {
       }
     })();
 
-    // Возвращаем только те элементы, которые относятся к текущей "странице"
     return filtered.slice(0, itemsPerPage);
   }
 
   function loadMoreItems() {
-    setItemsPerPage((prevItemsPerPage) => prevItemsPerPage + 3); // Увеличиваем количество отображаемых элементов на 3
+    setItemsPerPage((prevItemsPerPage) => prevItemsPerPage + 3);
   }
 
   return (

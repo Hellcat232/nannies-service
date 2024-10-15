@@ -1,5 +1,5 @@
 import css from "./HomePage.module.css";
-// import icons from "../../../src/images/symbol-defs.svg";
+import { GoArrowUpRight } from "react-icons/go";
 
 import HomePageHeader from "../../components/HomePageHeader/HomePageHeader";
 import { useNavigate } from "react-router-dom";
@@ -26,13 +26,11 @@ export default function HomePage() {
               Find Babysitters Online for All Occasions
             </p>
             <button
+              type="click"
               className={css["get-started-btn"]}
               onClick={handleGetStarted}
             >
-              Get started{" "}
-              <svg width="15" height="17">
-                <use href="images/symbol-defs.svg#icon-Arrow"></use>
-              </svg>
+              Get started <GoArrowUpRight size="24" />
             </button>
           </div>
 

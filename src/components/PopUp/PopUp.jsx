@@ -1,5 +1,6 @@
 import css from "./PopUp.module.css";
 import Modal from "react-modal";
+import { useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -52,6 +53,7 @@ const schema = yup
 const PopUp = ({
   popUpIsOpen,
   onRequestClose,
+  afterOpenModal,
   setPopUpIsOpen,
   name,
   avatar,
@@ -66,7 +68,6 @@ const PopUp = ({
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     toast.success("Appointment was booked!");
     reset();
     setPopUpIsOpen(false);
@@ -75,14 +76,28 @@ const PopUp = ({
   const handleCloseModal = () => {
     setPopUpIsOpen(false);
   };
+
+  useEffect(() => {
+    if (popUpIsOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [popUpIsOpen]);
+
   return (
     <>
       <Modal
         isOpen={popUpIsOpen}
-        // onAfterOpen={afterOpenModal}
-        onRequestClose={onRequestClose}
         style={customStyles}
         contentLabel="Example Modal"
+        onRequestClose={handleCloseModal}
+        shouldCloseOnEsc={true}
+        shouldCloseOnOverlayClick={true}
       >
         <button className={css["modal-close"]}>
           <IoMdClose onClick={handleCloseModal} />
